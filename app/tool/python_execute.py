@@ -1,4 +1,6 @@
-import threading
+import multiprocessing
+import sys
+from io import StringIO
 from typing import Dict
 
 from app.tool.base import BaseTool
@@ -8,7 +10,9 @@ class PythonExecute(BaseTool):
     """A tool for executing Python code with timeout and safety restrictions."""
 
     name: str = "python_execute"
-    description: str = "Executes Python code string. Note: Only print outputs are visible, function return values are not captured. Use print statements to see results."
+    description: str = (
+        "Executes Python code string. Note: Only print outputs are visible, function return values are not captured. Use print statements to see results."
+    )
     parameters: dict = {
         "type": "object",
         "properties": {
@@ -19,6 +23,20 @@ class PythonExecute(BaseTool):
         },
         "required": ["code"],
     }
+
+    def _run_code(self, code: str, result_dict: dict, safe_globals: dict) -> None:
+        original_stdout = sys.stdout
+        try:
+            output_buffer = StringIO()
+            sys.stdout = output_buffer
+            exec(code, safe_globals, safe_globals)
+            result_dict["observation"] = output_buffer.getvalue()
+            result_dict["success"] = True
+        except Exception as e:
+            result_dict["observation"] = str(e)
+            result_dict["success"] = False
+        finally:
+            sys.stdout = original_stdout
 
     async def execute(
         self,
@@ -35,36 +53,25 @@ class PythonExecute(BaseTool):
         Returns:
             Dict: Contains 'output' with execution output or error message and 'success' status.
         """
-        result = {"observation": ""}
 
-        def run_code():
-            try:
-                safe_globals = {"__builtins__": dict(__builtins__)}
+        with multiprocessing.Manager() as manager:
+            result = manager.dict({"observation": "", "success": False})
+            if isinstance(__builtins__, dict):
+                safe_globals = {"__builtins__": __builtins__}
+            else:
+                safe_globals = {"__builtins__": __builtins__.__dict__.copy()}
+            proc = multiprocessing.Process(
+                target=self._run_code, args=(code, result, safe_globals)
+            )
+            proc.start()
+            proc.join(timeout)
 
-                import sys
-                from io import StringIO
-
-                output_buffer = StringIO()
-                sys.stdout = output_buffer
-
-                exec(code, safe_globals, {})
-
-                sys.stdout = sys.__stdout__
-
-                result["observation"] = output_buffer.getvalue()
-
-            except Exception as e:
-                result["observation"] = str(e)
-                result["success"] = False
-
-        thread = threading.Thread(target=run_code)
-        thread.start()
-        thread.join(timeout)
-
-        if thread.is_alive():
-            return {
-                "observation": f"Execution timeout after {timeout} seconds",
-                "success": False,
-            }
-
-        return result
+            # timeout process
+            if proc.is_alive():
+                proc.terminate()
+                proc.join(1)
+                return {
+                    "observation": f"Execution timeout after {timeout} seconds",
+                    "success": False,
+                }
+            return dict(result)

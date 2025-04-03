@@ -1,10 +1,14 @@
-[English](README.md) | [中文](README_zh.md) | 한국어
+<p align="center">
+  <img src="assets/logo.jpg" width="200"/>
+</p>
 
+[English](README.md) | [中文](README_zh.md) | 한국어 | [日本語](README_ja.md)
 
 [![GitHub stars](https://img.shields.io/github/stars/mannaandpoem/OpenManus?style=social)](https://github.com/mannaandpoem/OpenManus/stargazers)
 &ensp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &ensp;
 [![Discord Follow](https://dcbadge.vercel.app/api/server/DYn29wFk9z?style=flat)](https://discord.gg/DYn29wFk9z)
+[![Demo](https://img.shields.io/badge/Demo-Hugging%20Face-yellow)](https://huggingface.co/spaces/lyh-917/OpenManusDemo)
 
 # 👋 OpenManus
 
@@ -66,7 +70,7 @@ cd OpenManus
 3. 새로운 가상 환경을 생성하고 활성화합니다:
 
 ```bash
-uv venv
+uv venv --python 3.12
 source .venv/bin/activate  # Unix/macOS의 경우
 # Windows의 경우:
 # .venv\Scripts\activate
@@ -76,6 +80,11 @@ source .venv/bin/activate  # Unix/macOS의 경우
 
 ```bash
 uv pip install -r requirements.txt
+```
+
+### 브라우저 자동화 도구 (선택사항)
+```bash
+playwright install
 ```
 
 ## 설정 방법
@@ -116,7 +125,12 @@ python main.py
 
 이후 터미널에서 아이디어를 작성하세요!
 
-unstable 버전을 실행하려면 아래 명령어를 사용할 수도 있습니다:
+MCP 도구 버전을 사용하려면 다음을 실행하세요:
+```bash
+python run_mcp.py
+```
+
+불안정한 멀티 에이전트 버전을 실행하려면 다음을 실행할 수 있습니다:
 
 ```bash
 python run_flow.py
@@ -127,6 +141,8 @@ python run_flow.py
 모든 친절한 제안과 유용한 기여를 환영합니다! 이슈를 생성하거나 풀 리퀘스트를 제출해 주세요.
 
 또는 📧 메일로 연락주세요. @mannaandpoem : mannaandpoem@gmail.com
+
+**참고**: pull request를 제출하기 전에 pre-commit 도구를 사용하여 변경 사항을 확인하십시오. `pre-commit run --all-files`를 실행하여 검사를 실행합니다.
 
 ## 커뮤니티 그룹
 Feishu 네트워킹 그룹에 참여하여 다른 개발자들과 경험을 공유하세요!
@@ -141,10 +157,12 @@ Feishu 네트워킹 그룹에 참여하여 다른 개발자들과 경험을 공�
 
 ## 감사의 글
 
-이 프로젝트에 기본적인 지원을 제공해 주신 [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo)와  
+이 프로젝트에 기본적인 지원을 제공해 주신 [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo)와
 [browser-use](https://github.com/browser-use/browser-use)에게 감사드립니다!
 
-또한, [AAAJ](https://github.com/metauto-ai/agent-as-a-judge), [MetaGPT](https://github.com/geekan/MetaGPT), [OpenHands](https://github.com/All-Hands-AI/OpenHands)에 깊은 감사를 드립니다.
+또한, [AAAJ](https://github.com/metauto-ai/agent-as-a-judge), [MetaGPT](https://github.com/geekan/MetaGPT), [OpenHands](https://github.com/All-Hands-AI/OpenHands), [SWE-agent](https://github.com/SWE-agent/SWE-agent)에 깊은 감사를 드립니다.
+
+또한 Hugging Face 데모 공간을 지원해 주신 阶跃星辰 (stepfun)에게 감사드립니다.
 
 OpenManus는 MetaGPT 기여자들에 의해 개발되었습니다. 이 에이전트 커뮤니티에 깊은 감사를 전합니다!
 

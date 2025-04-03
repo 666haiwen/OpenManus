@@ -1,19 +1,21 @@
+<p align="center">
+  <img src="assets/logo.jpg" width="200"/>
+</p>
 
-[English](README.md) | 中文 | [한국어](README_ko.md)
-
-
+[English](README.md) | 中文 | [한국어](README_ko.md) | [日本語](README_ja.md)
 
 [![GitHub stars](https://img.shields.io/github/stars/mannaandpoem/OpenManus?style=social)](https://github.com/mannaandpoem/OpenManus/stargazers)
 &ensp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &ensp;
 [![Discord Follow](https://dcbadge.vercel.app/api/server/DYn29wFk9z?style=flat)](https://discord.gg/DYn29wFk9z)
+[![Demo](https://img.shields.io/badge/Demo-Hugging%20Face-yellow)](https://huggingface.co/spaces/lyh-917/OpenManusDemo)
 
 # 👋 OpenManus
 
 Manus 非常棒，但 OpenManus 无需邀请码即可实现任何创意 🛫！
 
-我们的团队成员 [@mannaandpoem](https://github.com/mannaandpoem) [@XiangJinyu](https://github.com/XiangJinyu) [@MoshiQAQ](https://github.com/MoshiQAQ) [@didiforgithub](https://github.com/didiforgithub) https://github.com/stellaHSR 来自 [@MetaGPT](https://github.com/geekan/MetaGPT) 组织，我们在 3
-小时内完成了原型开发并持续迭代中！
+我们的团队成员 [@Xinbin Liang](https://github.com/mannaandpoem) 和 [@Jinyu Xiang](https://github.com/XiangJinyu)（核心作者），以及 [@Zhaoyang Yu](https://github.com/MoshiQAQ)、[@Jiayi Zhang](https://github.com/didiforgithub) 和 [@Sirui Hong](https://github.com/stellaHSR)，来自 [@MetaGPT](https://github.com/geekan/MetaGPT)团队。我们在 3
+小时内完成了开发并持续迭代中！
 
 这是一个简洁的实现方案，欢迎任何建议、贡献和反馈！
 
@@ -69,7 +71,7 @@ cd OpenManus
 3. 创建并激活虚拟环境：
 
 ```bash
-uv venv
+uv venv --python 3.12
 source .venv/bin/activate  # Unix/macOS 系统
 # Windows 系统使用：
 # .venv\Scripts\activate
@@ -79,6 +81,11 @@ source .venv/bin/activate  # Unix/macOS 系统
 
 ```bash
 uv pip install -r requirements.txt
+```
+
+### 浏览器自动化工具（可选）
+```bash
+playwright install
 ```
 
 ## 配置说明
@@ -119,7 +126,12 @@ python main.py
 
 然后通过终端输入你的创意！
 
-如需体验开发中版本，可运行：
+如需使用 MCP 工具版本，可运行：
+```bash
+python run_mcp.py
+```
+
+如需体验不稳定的多智能体版本，可运行：
 
 ```bash
 python run_flow.py
@@ -130,6 +142,8 @@ python run_flow.py
 我们欢迎任何友好的建议和有价值的贡献！可以直接创建 issue 或提交 pull request。
 
 或通过 📧 邮件联系 @mannaandpoem：mannaandpoem@gmail.com
+
+**注意**: 在提交 pull request 之前，请使用 pre-commit 工具检查您的更改。运行 `pre-commit run --all-files` 来执行检查。
 
 ## 交流群
 
@@ -143,12 +157,19 @@ python run_flow.py
 
 [![Star History Chart](https://api.star-history.com/svg?repos=mannaandpoem/OpenManus&type=Date)](https://star-history.com/#mannaandpoem/OpenManus&Date)
 
+
+## 赞助商
+感谢[PPIO](https://ppinfra.com/user/register?invited_by=OCPKCN&utm_source=github_openmanus&utm_medium=github_readme&utm_campaign=link) 提供的算力支持。
+> PPIO派欧云：一键调用高性价比的开源模型API和GPU容器
+
 ## 致谢
 
 特别感谢 [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo)
 和 [browser-use](https://github.com/browser-use/browser-use) 为本项目提供的基础支持！
 
-此外，我们感谢 [AAAJ](https://github.com/metauto-ai/agent-as-a-judge)，[MetaGPT](https://github.com/geekan/MetaGPT) 和 [OpenHands](https://github.com/All-Hands-AI/OpenHands).
+此外，我们感谢 [AAAJ](https://github.com/metauto-ai/agent-as-a-judge)，[MetaGPT](https://github.com/geekan/MetaGPT)，[OpenHands](https://github.com/All-Hands-AI/OpenHands) 和 [SWE-agent](https://github.com/SWE-agent/SWE-agent).
+
+我们也感谢阶跃星辰 (stepfun) 提供的 Hugging Face 演示空间支持。
 
 OpenManus 由 MetaGPT 社区的贡献者共同构建，感谢这个充满活力的智能体开发者社区！
 
