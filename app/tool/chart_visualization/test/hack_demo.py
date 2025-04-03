@@ -2,18 +2,20 @@ import asyncio
 import time
 
 from app.agent.data_analysis import DataAnalysis
+from app.agent.manus import Manus
 from app.flow.flow_factory import FlowFactory, FlowType
 from app.logger import logger
 
 
 async def run_flow():
     agents = {
-        "visactor": DataAnalysis(),
+        "manus": Manus(),
+        # "visactor": DataAnalysis(),
     }
 
     try:
         prompt = """Here's last month's sales data from my Amazon store. Could you analyze it thoroughly with visualizations and recommend specific, data-driven strategies to boost next month's sales by 10%?
-File Path: workspace/amazon_sales_jan2025.csv
+File Path: workspace/amazon_sales_jan2025.xlsx
 """
 
         flow = FlowFactory.create_flow(

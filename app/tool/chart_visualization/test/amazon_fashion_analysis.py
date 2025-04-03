@@ -15,7 +15,7 @@ async def run_flow():
     }
 
     try:
-        prompt = """Here's last month's sales data from my Amazon store in './data/amazon_sales_jan2025.xlsx'. Could you analyze it？"""
+        prompt = """Here's last month's sales data from my Amazon store in './workspace/amazon_sales_jan2025.xlsx'. Could you analyze it？"""
 
         flow = FlowFactory.create_flow(
             flow_type=FlowType.PLANNING,

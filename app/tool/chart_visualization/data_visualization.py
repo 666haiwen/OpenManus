@@ -1,14 +1,15 @@
-import json
 import asyncio
-import pandas as pd
+import json
 import os
 from typing import Any, Hashable
+
+import pandas as pd
 from pydantic import Field, model_validator
 
-from app.llm import LLM
-from app.tool.base import BaseTool
-from app.logger import logger
 from app.config import config
+from app.llm import LLM
+from app.logger import logger
+from app.tool.base import BaseTool
 
 
 class DataVisualization(BaseTool):
@@ -130,7 +131,7 @@ Outputs:
         for index, result in enumerate(results):
             csv_path = csv_file_path[index]
             if "error" in result and "chart_path" not in result:
-                error_list.append(f"Error in {csv_path}: {result["error"]}")
+                error_list.append(f"Error in {csv_path}: {result['error']}")
             else:
                 success_list.append(
                     {
@@ -178,7 +179,7 @@ Outputs:
         for index, result in enumerate(results):
             chart_path = chart_file_path[index]
             if "error" in result and "chart_path" not in result:
-                error_list.append(f"Error in {chart_path}: {result["error"]}")
+                error_list.append(f"Error in {chart_path}: {result['error']}")
             else:
                 success_list.append(chart_path)
         success_template = (
